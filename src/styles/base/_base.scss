@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $fontFamilyUno;
+    font-size: 16px;
+    background: #fff;
+    color: $negroUno;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+.active {
+    font-weight: 700!important;
+}
+
+main {
+    padding: 65px 0!important;
+}
+
+.alert {
+    padding: 0;
+    color: rgb(193, 53, 21) !important;
+}
+
+.iconoError {
+    color: rgb(193, 53, 21) !important;
+    font-size: 12px;
+    margin-right: 5px;
+}
