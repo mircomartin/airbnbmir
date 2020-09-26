@@ -148,6 +148,20 @@ export const AuthState = (props) => {
 		}
 	}
 
+	//UpdateProfile
+	const startUpdateProfileInformation = async (uid, information) => {
+		try {
+
+			await db.collection('Usuarios').doc(uid).update(information)
+
+			Swal.fire('Success','Your profile is updated!','success')
+
+			startCurrentProfile(uid)
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -158,6 +172,7 @@ export const AuthState = (props) => {
 				startCurrentProfile,
 				startLogout,
 				startUpdateProfileImage,
+				startUpdateProfileInformation,
 				dispatch,
 			}}
 		>

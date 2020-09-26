@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/auth/AuthContext';
 
 export const EditProfile = ({history}) => {
 
-    const { activeUser, startCurrentProfile } = useContext(AuthContext)
+    const { activeUser, startCurrentProfile, startUpdateProfileInformation } = useContext(AuthContext)
 
     const [formValues, setFormValues] = useState({
         country: '',
@@ -41,6 +41,15 @@ export const EditProfile = ({history}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+		startUpdateProfileInformation(id, formValues)
+
+		setFormValues({
+			country: '',
+			city: '',
+			description: '',
+			languajes: '',
+		})
+		
         history.push('/profile')
     }
 
