@@ -1,0 +1,73 @@
+.navbar {
+    border-bottom: 1px solid $grisClaro2;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    background-color: #fff;
+    &__img {
+        width: 130px;
+    }
+    &__profile {
+        border-radius: 21px;
+        border: 1px solid $grisClaro2;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .profileClick { 
+        box-shadow: rgba(0,0,0,.18) 0px 2px 4px;
+    }
+    &__imgProfile {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    &__menuMain {
+        position: relative;
+    }
+    &__icono {
+        text-align: center;
+        font-size: 23px;
+        line-height: 30px;
+        color: $grisOscuro;
+        height: 30px;
+        width: 30px;
+    }
+    .submenuShow {
+        display: block;
+    }
+    &__subMenu {
+        box-shadow: rgba(0,0,0,.18) 0px 2px 4px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 15px 0;
+        border-radius: 5px;
+        text-align: left;
+        display: none;
+        background-color: #fff;
+        li {
+            width: 100%;
+        }
+        a,
+        button {
+            text-align: left;
+            width: 100%;
+            background: none;
+            border: none;
+            display: block;
+            padding: 10px 0;
+            padding-left: 10px;
+            color: $negroUno;
+            font-size: 14px;
+            &:hover {
+                color: $negroUno;
+                text-decoration: none;
+                background-color: $grisClaro;
+                cursor: pointer;
+            }
+        }
+    }
+}
