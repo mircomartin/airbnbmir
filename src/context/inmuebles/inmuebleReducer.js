@@ -12,6 +12,20 @@ export default (state, action) => {
 				...state,
 				inmuebles: action.payload,
 			};
+		case types.activeInmueble:
+			return {
+				...state,
+				active: action.payload,
+			};
+		case types.editInmueble:
+			return {
+				...state,
+				inmuebles: state.inmuebles.map((inmueble) =>
+					inmueble.id === action.payload.id
+						? action.payload
+						: inmueble,
+				),
+			};
 		default:
 			return state;
 	}

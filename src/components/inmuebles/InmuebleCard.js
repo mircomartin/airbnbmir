@@ -1,7 +1,18 @@
 import React from 'react';
 
+//Router
+import { useHistory } from 'react-router-dom';
+
 export const InmuebleCard = ({ inmueble }) => {
-	const { city, title, price, country, file } = inmueble;
+	const { id, city, title, price, country, file } = inmueble;
+
+	const history = useHistory()
+
+	const handleEdit = () => {
+            
+		history.push(`/properties/myproperties/${id}`)
+		
+	}
 
 	return (
 		<div className="col-12 col-md-4">
@@ -20,7 +31,7 @@ export const InmuebleCard = ({ inmueble }) => {
 					/>
 				)}
 			</figure>
-			<div className="inmuebles__wrapperBody">
+			<div className="inmuebles__wrapperBody" onClick={handleEdit}>
 				<p className="inmuebles__bodyCity">
 					{city}, {country}
 				</p>

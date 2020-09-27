@@ -5,9 +5,13 @@ export const types = {
 
     alertShow: '[ui] Alerta Activa',
     alertHide: '[ui] Alerta Oculta',
+    startLoading: '[ui] Loading Activo',
+    finishLoading: '[ui] Loading Finalizado',
 
     setInmuebles: '[inmuebles] Lista de Inmuebles Cargados',
     addInmueble: '[inmuebles] Inmueble Agregado',
+    editInmueble: '[inmuebles] Inmueble Editado',
+    activeInmueble: '[inmuebles] Inmueble Seleccionado',
 
 
 }

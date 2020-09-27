@@ -1,21 +1,5 @@
 import { db } from './../firebase/firebase-config';
 
-/* export const loadProducts = async(uid) => {
-    const productsSnap = await db.collection(`${uid}/hunt/products`).orderBy('createDate', 'desc').get();
-
-    const products = [];
-
-    productsSnap.forEach(snapHijo => {
-        products.push({
-            id: snapHijo.id,
-            ...snapHijo.data()
-        })
-    })
-
-    
-    return products;
-} */
-
 export const loadInmueblesAll = async () => {
 	const inmueblesSnap = await db.collection('Inmuebles').get();
 
@@ -50,15 +34,14 @@ export const loadInmueblesSearch = async (keyword) => {
 };
 
 export const loadInmuebleActive = async (id) => {
-	const inmueble = await db.collection('Inmuebles').doc(id).get();
+	const inmueble = await db.collection('Properties').doc(id).get();
 
 	const queryResp = inmueble.data();
-
+	
 	const newInmueble = {
-		id,
+		id: queryResp.id,
 		...queryResp,
 	};
-
 	return newInmueble;
 };
 

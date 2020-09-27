@@ -10,6 +10,7 @@ export const UiState = (props) => {
 
 	const initialState = {
 		alert: false,
+		loading: false,
 	};
 
 	const [state, dispatch] = useReducer(uiReducer, initialState);
@@ -29,6 +30,22 @@ export const UiState = (props) => {
 		})
 
 	}
+
+	const startLoading = () => {
+
+		dispatch({
+			type:types.startLoading
+		})
+
+	}
+
+	const finishLoading = () => {
+
+		dispatch({
+			type:types.finishLoading
+		})
+
+	}
 	
 	return (
 		<UiContext.Provider
@@ -36,6 +53,8 @@ export const UiState = (props) => {
 				alert: state.alert,
 				showAlert,
 				hideAlert,
+				startLoading,
+				finishLoading,
 			}}
 		>
 			{props.children}

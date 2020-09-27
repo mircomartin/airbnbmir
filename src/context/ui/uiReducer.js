@@ -12,6 +12,16 @@ export default (state, action) => {
 				...state,
 				alert: false,
 			};
+		case types.startLoading:
+			return {
+				...state,
+				loading: true,
+			};
+		case types.finishLoading:
+			return {
+				...state,
+				loading: false,
+			};
 		default:
 			return state;
 	}
