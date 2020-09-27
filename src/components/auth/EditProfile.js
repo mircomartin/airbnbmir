@@ -1,57 +1,41 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+
+//Router
 import { useParams } from 'react-router-dom';
 
 //Context
 import { AuthContext } from '../../context/auth/AuthContext';
 
-export const EditProfile = ({history}) => {
+//Components
+import { useForm } from '../../hooks/useForm';
 
-    const { activeUser, startCurrentProfile, startUpdateProfileInformation } = useContext(AuthContext)
+export const EditProfile = ({ history }) => {
+	const {
+		activeUser,
+		startCurrentProfile,
+		startUpdateProfileInformation,
+	} = useContext(AuthContext);
 
-    const [formValues, setFormValues] = useState({
-        country: '',
-        city: '',
-        description: '',
-        languajes: '',
-    })
+	const [formValues, handleInputChange] = useForm(activeUser);
 
-    const { country , city, description, languajes } = formValues
+	const { country, city, description, languajes } = formValues;
 
-    const handleInputChange = (e) => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]:e.target.value,
-        })
-    }
+	const { id } = useParams();
 
-    const { id } = useParams();
+	useEffect(() => {
+		if (!activeUser) {
+			startCurrentProfile(id);
+		}
+		// eslint-disable-next-line
+	}, [id]);
 
-    useEffect(() => {
-        if(!activeUser){
-            startCurrentProfile(id)
-        }
-        // eslint-disable-next-line
-    }, [id, activeUser])
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-    useEffect(() => {
-        setFormValues(activeUser)
-        // eslint-disable-next-line
-    }, [activeUser])
+		startUpdateProfileInformation(id, formValues);
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-		startUpdateProfileInformation(id, formValues)
-
-		setFormValues({
-			country: '',
-			city: '',
-			description: '',
-			languajes: '',
-		})
-		
-        history.push('/profile')
-    }
+		history.push('/profile');
+	};
 
 	return (
 		<div className="container auth">
@@ -63,6 +47,17 @@ export const EditProfile = ({history}) => {
 					<div className="p-4">
 						<form onSubmit={handleSubmit}>
 							<div className="form-values mb-4">
+								<label>Information</label>
+								<textarea
+									name="description"
+									value={description || ''}
+									onChange={handleInputChange}
+									placeholder="Description"
+									className="auth__input"
+								/>
+							</div>
+							<div className="form-values mb-4">
+								<label>Country</label>
 								<input
 									type="text"
 									name="country"
@@ -73,6 +68,8 @@ export const EditProfile = ({history}) => {
 								/>
 							</div>
 							<div className="form-values mb-4">
+								<label>City</label>
+
 								<input
 									type="text"
 									name="city"
@@ -82,7 +79,9 @@ export const EditProfile = ({history}) => {
 									className="auth__input"
 								/>
 							</div>
-                            <div className="form-values mb-4">
+							<div className="form-values mb-4">
+								<label>Language you speak</label>
+
 								<input
 									type="text"
 									name="languajes"
@@ -92,17 +91,10 @@ export const EditProfile = ({history}) => {
 									className="auth__input"
 								/>
 							</div>
-							<div className="form-values mb-4">
-								<textarea
-									name="description"
-									value={description  || ''}
-									onChange={handleInputChange}
-									placeholder="Description"
-									className="auth__input"
-								/>
-							</div>
 							<div className="form-values mt-4">
-								<button className="auth__button">Confirm</button>
+								<button className="auth__button">
+									Confirm
+								</button>
 							</div>
 						</form>
 					</div>

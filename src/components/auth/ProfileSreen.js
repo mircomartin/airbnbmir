@@ -40,7 +40,7 @@ export const ProfileSreen = ({history}) => {
 							)}
 						</figure>
 						<form className="mt-2">
-							<label className="profile__label" htmlFor="file">
+							<label className="profile__labelphoto" htmlFor="file">
 								Update your photo
 							</label>
 							<input
@@ -75,7 +75,7 @@ export const ProfileSreen = ({history}) => {
 						<h1 className="profile__name">
 							¡Hi! I'm {activeUser?.firstname}
 						</h1>
-						<span onClick={() => handleEdit(activeUser)} className="profile__label">
+						<span onClick={() => handleEdit(activeUser)} className="profile__editspan">
 							Profile edit
 						</span>
 					</div>

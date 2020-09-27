@@ -1,7 +1,7 @@
 import { storage } from "./../firebase/firebase-config";
 
 export const fileUpload = async ( file ) => {
-
+    
     const namePic = file.name;
     const nameKey = Date.now()
     const extension = namePic.split('.').pop()

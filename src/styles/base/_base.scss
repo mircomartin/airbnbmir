@@ -8,6 +8,7 @@ body {
     font-family: $fontFamilyUno;
     font-size: 16px;
     background: #fff;
+    color: $negroUno;
 }
 
 ul {
@@ -24,7 +25,7 @@ figure {
 }
 
 main {
-    padding: 65px 0;
+    padding: 65px 0!important;
 }
 
 .alert {

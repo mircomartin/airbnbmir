@@ -86,7 +86,8 @@
         height: 128px;
         border-radius: 50%;
     }
-    &__label {
+    &__labelphoto,
+    &__editspan {
         color: $negroUno;
         text-decoration: underline;
         font-weight: 500;
@@ -97,6 +98,7 @@
             text-decoration: underline;
         }
     }
+    
 	input[type="file"]#file {
 		width: 0.1px;
 		height: 0.1px;
@@ -143,5 +145,13 @@
     }
     &__details {
         margin-bottom: 32;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        &__wrapper {
+            border: none;
+        }
     }
 }

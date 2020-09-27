@@ -50,10 +50,17 @@ export const Navbar = () => {
 										</NavLink>
 										<NavLink
 											exact
-											to="/auth/login"
+											to="/properties/myproperties"
 											activeClassName="active"
 										>
 											<li>Your Properties</li>
+										</NavLink>
+										<NavLink
+											exact
+											to="/properties/addproperty"
+											activeClassName="active"
+										>
+											<li>Add Property</li>
 										</NavLink>
 										<a
 											href="https://www.airbnb.com.ar/help"
