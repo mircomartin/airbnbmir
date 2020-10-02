@@ -31,13 +31,13 @@ export const AppRouter = () => {
 				
 				startCurrentProfile(user.uid)
 				
-				const { uid, displayName } = user;
+				const { uid, displayName, email } = user;
 
 				setIsloggedin(true);
 
 				dispatch({
 					type: types.login,
-					payload: { uid, displayName },
+					payload: { uid, displayName, email },
 				});
 
 			} else {

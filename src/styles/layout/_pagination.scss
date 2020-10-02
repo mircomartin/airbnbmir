@@ -1,0 +1,22 @@
+.pagination {
+    &__item {
+        margin-right: 10px;
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+    &__link {
+        background-color: transparent;
+        border: none;
+        padding: 5px 10px;
+        color: $negroUno;
+    }
+    &__link:focus {
+        outline: none;
+        background-color: $negroUno;
+        border: none;
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: #fff;
+    }
+}

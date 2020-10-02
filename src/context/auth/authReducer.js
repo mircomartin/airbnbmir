@@ -7,6 +7,7 @@ export default (state, action) => {
 				user: {
 					uid: action.payload.uid,
 					name: action.payload.displayName,
+					email: action.payload.email,
 				},
 			};
 		case types.activeUser:

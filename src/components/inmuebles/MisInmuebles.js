@@ -15,20 +15,22 @@ export const MisInmuebles = () => {
 	const { loading } = useContext(UiContext);
 
 	useEffect(() => {
-        startListMyProperties(user.uid);
-        // eslint-disable-next-line
+		startListMyProperties(user.uid);
+		// eslint-disable-next-line
 	}, [user.uid]);
-
-    if(loading) return <Spinner/>
 
 	return (
 		<div className="container inmuebles">
 			<h2 className="inmuebles__title">Your properties</h2>
-			<div className="row">
-				{inmuebles.map((inmueble) => (
-					<InmuebleCard key={inmueble.id} inmueble={inmueble} />
-				))}
-			</div>
+			{loading ? (
+				<Spinner />
+			) : (
+				<div className="row">
+					{inmuebles.map((inmueble) => (
+						<InmuebleCard key={inmueble.id} inmueble={inmueble} />
+					))}
+				</div>
+			)}
 		</div>
 	);
 };

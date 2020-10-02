@@ -50,10 +50,12 @@ const NewInmueble = ({ history }) => {
 		hideAlert();
 
 		startAddProperty(user, formValues);
+		
+		setTimeout(() => {
+			history.push('/properties/myproperties');			
+		}, 3000);
 
 		reset();
-
-		history.push('/properties/myproperties');
 	};
 
 	return (

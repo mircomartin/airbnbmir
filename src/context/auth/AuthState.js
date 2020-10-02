@@ -54,7 +54,8 @@ export const AuthState = (props) => {
 				type: types.login,
 				payload: {
 					uid,
-					displayName
+					displayName, 
+					email,
 				}
 			})
 

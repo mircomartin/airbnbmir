@@ -1,7 +1,7 @@
 import { db } from './../firebase/firebase-config';
 
 export const loadInmueblesAll = async () => {
-	const inmueblesSnap = await db.collection('Inmuebles').get();
+	const inmueblesSnap = await db.collection('Properties').get();
 
 	const inmuebles = [];
 
@@ -15,14 +15,15 @@ export const loadInmueblesAll = async () => {
 	return inmuebles;
 };
 
-export const loadInmueblesSearch = async (keyword) => {
+export const loadPropertySearch = async (keyword) => {
+	
 	const inmueblesSnap = await db
-		.collection('Inmuebles')
-		.orderBy('address')
-		.where('keywords', 'array-contains', keyword.inmueble.toLowerCase())
-		.get();
+	.collection('Properties')
+	.where('keywords', 'array-contains',keyword)
+	.get();
+	
 	const inmuebles = [];
-
+	
 	inmueblesSnap.forEach((snapHijo) => {
 		inmuebles.push({
 			id: snapHijo.id,

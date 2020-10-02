@@ -12,6 +12,6 @@ export const types = {
     addInmueble: '[inmuebles] Inmueble Agregado',
     editInmueble: '[inmuebles] Inmueble Editado',
     activeInmueble: '[inmuebles] Inmueble Seleccionado',
-
+    deletedInmueble: '[inmuebles] Inmueble Eliminado',
 
 }

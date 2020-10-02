@@ -30,3 +30,51 @@
         }
     }
 }
+
+.single {
+    padding-top: 50px;
+    &__title {
+        font-size: 26px;
+        font-weight: 600;
+    }
+    &__subtitle {
+        color: $grisOscuro;
+        text-decoration: underline;
+        font-size: 14px;
+    }
+    &__address {
+        font-size: 22px;
+        font-weight: 600;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid $bordes;
+    }
+    figure {
+        margin-top: 24px;
+    }
+    &__img {
+        border-radius: 12px;
+    }
+    &__description {
+        line-height: 24px;
+        text-align: justify;
+        i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    }
+    &__price {
+        span {
+            font-size: 22px;
+            font-weight: 600;
+        }
+    }
+    &__contact {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    &__contactDetails {
+        font-size: 14px;
+        color: $grisOscuro;
+    }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 //Router
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 //Components
 import { ProfileSreen } from '../components/auth/ProfileSreen'
@@ -10,6 +10,8 @@ import { Inmuebles } from '../components/inmuebles/Inmuebles'
 import NewInmueble from '../components/inmuebles/NewInmueble'
 import { MisInmuebles } from '../components/inmuebles/MisInmuebles'
 import { EditInmueble } from '../components/inmuebles/EditInmueble'
+import { SingleInmuebleScreen } from '../components/inmuebles/SingleInmuebleScreen'
+import { SearchScreen } from '../components/inmuebles/SearchScreen'
 
 export const Dashboard = () => {
     return (
@@ -21,6 +23,10 @@ export const Dashboard = () => {
             <Route exact path="/properties/addproperty" component={NewInmueble}/>
             <Route exact path="/properties/myproperties/:id" component={EditInmueble}/>
 
+            <Route exact path="/properties/:id" component={SingleInmuebleScreen}/>
+            <Route exact path="/search/:id" component={SearchScreen}/>
+
+            <Redirect to="/"/>
         </Switch>
     )
 }

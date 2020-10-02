@@ -51,6 +51,7 @@ export const UiState = (props) => {
 		<UiContext.Provider
 			value={{
 				alert: state.alert,
+				loading: state.loading,
 				showAlert,
 				hideAlert,
 				startLoading,

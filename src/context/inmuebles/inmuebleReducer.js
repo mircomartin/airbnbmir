@@ -11,6 +11,7 @@ export default (state, action) => {
 			return {
 				...state,
 				inmuebles: action.payload,
+				active: {},
 			};
 		case types.activeInmueble:
 			return {
@@ -21,10 +22,16 @@ export default (state, action) => {
 			return {
 				...state,
 				inmuebles: state.inmuebles.map((inmueble) =>
-					inmueble.id === action.payload.id
-						? action.payload
-						: inmueble,
+					inmueble.id === action.payload.id ? action.payload : inmueble,
 				),
+			};
+		case types.deletedInmueble:
+			return {
+				...state,
+				inmuebles: state.inmuebles.filter(
+					(inmueble) => inmueble.id === action.payload,
+				),
+				active: {},
 			};
 		default:
 			return state;

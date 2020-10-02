@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		setTimeout(() => {
 			menu.classList.remove('profileClick');
 			submenu.classList.remove('submenuShow');
-        }, 2000);
+        }, 3000);
         
 	});
 

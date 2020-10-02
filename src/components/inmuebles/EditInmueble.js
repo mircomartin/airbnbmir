@@ -6,61 +6,70 @@ import { useParams } from 'react-router-dom';
 //Context
 import { InmueblesContext } from '../../context/inmuebles/InmueblesContext';
 
-export const EditInmueble = ({history}) => {
+export const EditInmueble = ({ history }) => {
+	const {
+		active,
+		startActiveProperty,
+		startUpdateProperty,
+		startDeleteProperty,
+	} = useContext(InmueblesContext);
 
-    const { active, startActiveProperty, startUpdateProperty } = useContext(InmueblesContext)
+	const [formValues, setFormValues] = useState({
+		city: '',
+		title: '',
+		price: '',
+		country: '',
+		address: '',
+		description: '',
+	});
 
-    const [formValues, setFormValues] = useState({
-        city: '', 
-        title: '', 
-        price: '', 
-        country: '', 
-        address:'',
-        description: '',
-    })
+	const { city, title, price, country, address, description } = formValues;
 
-    const { city, title, price, country, address, description } = formValues
+	const handleInputChange = (e) => {
+		setFormValues({
+			...formValues,
+			[e.target.name]: e.target.value,
+		});
+	};
 
-    const handleInputChange = (e) => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]:e.target.value
-        })
-    }
-
-    const handleFileChange = (e) => {
+	const handleFileChange = (e) => {
 		const file = e.target.files[0];
 
 		if (file) {
 			formValues.file = file;
-		}else{
-			delete formValues.file
+		} else {
+			delete formValues.file;
 		}
-    };
-    
-    const {id} = useParams()
+	};
 
-    useEffect(() => {
-		startActiveProperty(id)
+	const { id } = useParams();
+
+	useEffect(() => {
+		startActiveProperty(id);
 		// eslint-disable-next-line
-    }, [id])
+	}, [id]);
 
-    useEffect(() => {
-        setFormValues(active)
-    }, [active])
+	useEffect(() => {
+		setFormValues(active);
+	}, [active]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-		startUpdateProperty(id, formValues)
-		
+		startUpdateProperty(id, formValues);
+
 		setTimeout(() => {
-
-			history.push('/properties/myproperties')
-			
+			history.push('/properties/myproperties');
 		}, 3000);
+	};
 
-    }
+	const handleDelete = (id) => {
+		startDeleteProperty(id);
+
+		setTimeout(() => {
+			history.push('/properties/myproperties');
+		}, 3000);
+	};
 
 	return (
 		<div className="container auth">
@@ -143,10 +152,13 @@ export const EditInmueble = ({history}) => {
 							<div className="form-values mt-4">
 								<button className="auth__button">Confirm</button>
 							</div>
-                            <div className="form-values mt-4">
-								<button className="auth__button">Delete</button>
-							</div>
 						</form>
+						<div
+							className="form-values mt-4"
+							onClick={() => handleDelete(id)}
+						>
+							<button className="auth__button">Delete</button>
+						</div>
 					</div>
 				</div>
 			</div>

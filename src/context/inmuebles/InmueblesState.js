@@ -1,8 +1,7 @@
 import React, { useReducer, useContext } from 'react';
 
 //Firebase
-import {db, firebase} from './../../firebase/firebase-config'
-
+import { db } from './../../firebase/firebase-config'
 
 //Context
 import { types } from '../../types/types';
@@ -13,7 +12,9 @@ import { UiContext } from '../ui/UiContext';
 //Components
 import { fileUpload } from '../../helpers/fileUpload';
 import { createKeyword } from '../../helpers/keywords';
-import { loadInmuebleActive, loadMyProperties } from '../../helpers/loadInmuebles';
+import { loadInmuebleActive, loadMyProperties, loadInmueblesAll, loadPropertySearch } from '../../helpers/loadInmuebles';
+
+//Sweet Alert 2
 import Swal from 'sweetalert2';
 
 
@@ -31,7 +32,9 @@ export const InmueblesState = (props) => {
 	const startAddProperty = async (user, property) => {
 		try {
 
-			if (property.file) {
+			if (!property.file) {
+				delete property.file
+			}else{
 				const url = await fileUpload(property.file)
 				property.file = url
 			}
@@ -45,12 +48,16 @@ export const InmueblesState = (props) => {
                 keywords
             }
 
-			const { id } = await db.collection('Properties').add(newInmueble)
+			const doc = await db.collection('Properties').add(newInmueble)
+
+			const { id } = doc
 
 			dispatch({
 				type: types.addInmueble,
-				payload: {id, newInmueble}
+				payload: {id, ...newInmueble},
 			})
+			
+			Swal.fire('Success', 'Your property was created', 'success')
 		} catch (error) {
 			console.log(error.message)
 		}
@@ -75,8 +82,29 @@ export const InmueblesState = (props) => {
 		}
 	}
 
+	//Search
+	const startListSearch = async (keyword) => {
+		startLoading()
+		try {
+			
+			const resp = await loadPropertySearch(keyword.toLowerCase())
+
+			dispatch({
+				type: types.setInmuebles,
+				payload: resp,
+			})
+
+			finishLoading()
+		} catch (error) {
+			finishLoading()
+			console.log(error.message)
+		}
+	}
+
 	//Inmueble seleccionado
 	const startActiveProperty = async (id) => {
+		startLoading()
+
 		try {
 
 			const resp = await loadInmuebleActive(id)
@@ -86,7 +114,9 @@ export const InmueblesState = (props) => {
 				payload: resp,
 			})
 
+			finishLoading()
 		} catch (error) {
+			finishLoading()
 			console.log(error.message)
 		}
 	}
@@ -96,7 +126,9 @@ export const InmueblesState = (props) => {
 		
 		try {
 			
-			if(property.file.lastModified) {
+			if(!property.file.lastModified) {
+				delete property.file
+			}else{
 				const url = await fileUpload(property.file)
 				property.file = url
 			}
@@ -127,6 +159,44 @@ export const InmueblesState = (props) => {
 		}
 	}
 
+	//Eliminar
+	const startDeleteProperty = async (id) => {
+		try {
+			
+			await db.collection('Properties').doc(id).delete()
+
+			dispatch({
+				type: types.deletedInmueble,
+				payload: id,
+			})
+
+			Swal.fire('Success', 'Your property was deleted', 'success')
+
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
+	//Load Inmuebles General
+	const startListAllProperties = async () => {
+		startLoading()
+		try {
+			
+			const resp = await loadInmueblesAll()
+
+			dispatch({
+				type: types.setInmuebles,
+				payload: resp,
+			})
+
+			finishLoading()
+			
+		} catch (error) {
+			finishLoading()
+			console.log(error.message)
+		}
+	}
+
 	return (
 		<InmueblesContext.Provider
 			value={{
@@ -136,7 +206,9 @@ export const InmueblesState = (props) => {
 				startListMyProperties,
 				startActiveProperty,
 				startUpdateProperty,
-
+				startListAllProperties,
+				startDeleteProperty,
+				startListSearch,
 			}}
 		>
 			{props.children}
