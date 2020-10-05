@@ -29,6 +29,20 @@
             font-weight: 700;
         }
     }
+    &__bodyIcono {
+        i {
+            color: $main;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        span {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .single {
@@ -76,5 +90,51 @@
     &__contactDetails {
         font-size: 14px;
         color: $grisOscuro;
+        margin-bottom: 20px;
+    }
+}
+
+.comments {
+    &__title {
+        font-weight: 600;
+        font-size: 22px;
+        padding: 20px 0;
+        border-top: 1px solid $bordes;
+    }
+    &__textarea {
+        padding: 10px;
+        width: 100%;
+        border: 1px solid $bordes;
+        border-radius: 12px;
+        outline: none;
+    }
+    &__button {
+        margin-top: 10px;
+        background-color: $ui;
+        color: #fff;
+        border: none;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        padding: 12px;
+        border-radius: 5px;
+        transition: .75s ease all;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &__commentWrapper {
+        margin-top: 20px;
+    }
+    &__titleUser {
+        border-top: 1px solid $bordes;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 20px 0;
+    }
+    &__noComments {
+        text-align: center;
+        font-weight: 600;
+        padding: 20px 0;
     }
 }

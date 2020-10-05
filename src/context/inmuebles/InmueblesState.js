@@ -45,7 +45,10 @@ export const InmueblesState = (props) => {
             const newInmueble = {
                 user,
                 ...property,
-                keywords
+				keywords,
+				comments: [],
+				likes: 0,
+				votado: [],
             }
 
 			const doc = await db.collection('Properties').add(newInmueble)
@@ -123,7 +126,6 @@ export const InmueblesState = (props) => {
 	
 	//Update
 	const startUpdateProperty = async (id, property) => {
-		
 		try {
 			
 			if(!property.file.lastModified) {
@@ -154,6 +156,32 @@ export const InmueblesState = (props) => {
 			})
 			
 			Swal.fire('Success', 'Your property was updated', 'success')
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
+	//Add comments
+	const startAddComment = async (id, comment) => {
+		try {
+			
+			await db.collection('Properties').doc(id).update(comment)
+
+			Swal.fire('Success', 'Your comment was added', 'success')
+
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+
+	//Add like
+	const startLikeProperty = async (id, likes) => {
+		try {
+			
+			await db.collection('Properties').doc(id).update(likes)
+
+			Swal.fire('Success', 'Thanks for your LIKE', 'success')
+
 		} catch (error) {
 			console.log(error.message)
 		}
@@ -209,6 +237,8 @@ export const InmueblesState = (props) => {
 				startListAllProperties,
 				startDeleteProperty,
 				startListSearch,
+				startAddComment,
+				startLikeProperty
 			}}
 		>
 			{props.children}

@@ -163,6 +163,21 @@ export const AuthState = (props) => {
 		}
 	}
 
+	//Recuperar contraseña
+	const startRecoverPasswordEmail = async (email) => {
+		try {
+			await firebase.auth().sendPasswordResetEmail(email)
+
+			Swal.fire('Success!', 'Please check your email, to recover your password', 'success')
+
+		} catch (error) {
+			
+			console.log(error.message)
+			Swal.fire('Error', 'Sorry, something was wrong, please try again', 'error')
+		}	
+		
+	}
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -174,6 +189,7 @@ export const AuthState = (props) => {
 				startLogout,
 				startUpdateProfileImage,
 				startUpdateProfileInformation,
+				startRecoverPasswordEmail,
 				dispatch,
 			}}
 		>

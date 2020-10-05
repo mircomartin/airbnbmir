@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, { useContext, useEffect } from 'react';
 
 //Router
 import { useParams } from 'react-router-dom';
@@ -12,16 +12,15 @@ import { Spinner } from '../layout/Spinner';
 import { InmuebleCardPublic } from './InmuebleCardPublic';
 
 export const SearchScreen = () => {
-
 	const { inmuebles, startListSearch } = useContext(InmueblesContext);
-    const { loading } = useContext(UiContext);
-    
-    const { id } = useParams()
-	
-    useEffect(() => {
-		startListSearch(id)
+	const { loading } = useContext(UiContext);
+
+	const { id } = useParams();
+
+	useEffect(() => {
+		startListSearch(id);
 		// eslint-disable-next-line
-    }, [])
+	}, []);
 
 	return (
 		<div className="container inmuebles">
@@ -30,12 +29,15 @@ export const SearchScreen = () => {
 				<Spinner />
 			) : (
 				<div className="row">
-					{inmuebles.map((inmueble) => (
-						<InmuebleCardPublic key={inmueble.id} inmueble={inmueble} />
-					))}
+					{inmuebles.length === 0 ? (
+						<h2>No results match your search...</h2>
+					) : (
+						inmuebles.map((inmueble) => (
+							<InmuebleCardPublic key={inmueble.id} inmueble={inmueble} />
+						))
+					)}
 				</div>
 			)}
 		</div>
-    )
-}
-
+	);
+};

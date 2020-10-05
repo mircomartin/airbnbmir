@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/auth/AuthContext';
 import { useForm } from '../../hooks/useForm';
 
 export const LoginScreen = () => {
-	const { startLoginEmailPassword } = useContext(AuthContext)
+	const { startLoginEmailPassword, startRecoverPasswordEmail } = useContext(AuthContext)
     const [ formValues, handleInputChange ] = useForm({
         email: 'mirco@carlos.com',
         password: '123456',
@@ -21,7 +21,11 @@ export const LoginScreen = () => {
     const handleSubmit = e => {
 		e.preventDefault()
 		startLoginEmailPassword(email, password)
-    }
+	}
+	
+	const handleRecover = () => {
+		startRecoverPasswordEmail(email)
+	}
 
 	return (
 		<div className="container auth">
@@ -54,7 +58,7 @@ export const LoginScreen = () => {
 								<button className="auth__button">Login</button>
 							</div>
 						</form>
-						<Link to="/auth/register" className="auth__links my-4">
+						<Link to="/auth/login" className="auth__links my-4" onClick={handleRecover}>
 							¿Did you forget your password?
 						</Link>
 						<span>¿Don't you have an account?</span>

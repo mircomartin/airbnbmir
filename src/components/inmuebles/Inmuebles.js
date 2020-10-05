@@ -39,7 +39,7 @@ export const Inmuebles = () => {
 				))}
 			</div>
 			{inmuebles.length >= 6 && (
-					<div className="row justify-content-center align-content-center my-5">
+					<div className="row justify-content-center align-content-center mt-5">
 						<Pagination
 							postsPerPage={postsPerPage}
 							totalPosts={inmuebles.length}

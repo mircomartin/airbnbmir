@@ -1,0 +1,32 @@
+.footer {
+    padding: 24px 0;
+    border-top: 1px solid $bordes;
+    &__firma {
+        font-size: 14px;
+        margin-bottom: 0;
+        a {
+            color: $negroUno;
+            font-weight: 600;
+            transition: .15s ease all;
+            &:hover {
+                color: $grisOscuro;
+                text-decoration: none;
+            }
+        }
+    }
+    &__enlaceIcono {
+        color: $negroUno;
+        margin-right: 20px;
+        transition: .15s ease all;
+        &:hover {
+            color: $grisOscuro;
+            text-decoration: none;
+        }
+        i {
+            font-size: 22px;
+        }
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}

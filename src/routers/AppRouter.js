@@ -17,6 +17,7 @@ import { Spinner } from '../components/layout/Spinner';
 //Context
 import { types } from '../types/types';
 import { AuthContext } from '../context/auth/AuthContext';
+import { Footer } from '../components/layout/Footer';
 
 export const AppRouter = () => {
 	const { dispatch, startCurrentProfile } = useContext(AuthContext);
@@ -52,6 +53,7 @@ export const AppRouter = () => {
 	return (
 		<Router>
 			<Navbar />
+			
 			{checking ? (
 				<Spinner />
 			) : (
@@ -73,6 +75,8 @@ export const AppRouter = () => {
 					</Switch>
 				</main>
 			)}
+
+			<Footer/>
 		</Router>
 	);
 };

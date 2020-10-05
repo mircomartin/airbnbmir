@@ -40,7 +40,7 @@ export const loadInmuebleActive = async (id) => {
 	const queryResp = inmueble.data();
 	
 	const newInmueble = {
-		id: queryResp.id,
+		id,
 		...queryResp,
 	};
 	return newInmueble;
